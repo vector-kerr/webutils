@@ -1,0 +1,17 @@
+{
+	"name": "vector88/webutils",
+    "authors": [
+        {
+            "name": "Daniel 'Vector' Kerr",
+            "email": "vector.kerr@gmail.com"
+        }
+    ],
+	"autoload": {
+		"psr-4": {
+			"Vector88\\": "src/Vector88/"
+		}
+	},
+	"require": {
+		"illuminate/support": "5.*"
+	}
+}
