@@ -141,7 +141,7 @@ Heads up: most stuff simply returns NULL if it can't get a value.
 <?php
 
 // Load an XML String (using Laravel with IOC)
-$xml = XMLHelper::loadStream( $xmlString );
+$xml = XmlHelper::loadStream( $xmlString );
 ```
 
 ### Using an Existing DOMDocument
@@ -149,18 +149,18 @@ $xml = XMLHelper::loadStream( $xmlString );
 <?php
 
 // Load a DOMDocument
-$xml = XMLHelper::setElement( $document );
+$xml = XmlHelper::setElement( $document );
 ```
 
 If you have a `DOMNode` that is attached to a `DOMDocument`, you can also
 do this to treat the `DOMNode` as the "root element" for many of the operations
-that the `XMLHelper` can perform:
+that the `XmlHelper` can perform:
 
 ```php
 <?php
 
 // Load a DOMNode
-$xml = XMLHelper::setElement( $node );
+$xml = XmlHelper::setElement( $node );
 ```
 
 ### Creating a new XML object
@@ -168,12 +168,12 @@ $xml = XMLHelper::setElement( $node );
 <?php
 
 // Create an empty XML object (with a document element)
-$xml = XMLHelper::create();
+$xml = XmlHelper::create();
 ```
 
 ### Finding Elements
 
-Say we have the following XML loaded into an `XMLHelper` instance named `$xml`:
+Say we have the following XML loaded into an `XmlHelper` instance named `$xml`:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -203,7 +203,7 @@ The following code could be used to retrieve the `<catalogue>` node (as a
 $catalogue = $xml->findFirst( 'catalogue' );
 ```
 
-As the `XMLHelper` mostly backs on to `DOMXPath`, it's entirely possible to
+As the `XmlHelper` mostly backs on to `DOMXPath`, it's entirely possible to
 provide an XPath string. To retrieve the first book element...
 
 ```php
@@ -236,9 +236,9 @@ Again, this method retrieves the `DOMNode` entries corresponding to the
 elements that are retrieved.
 
 
-### Retrieving an `XMLHelper` for Elements
+### Retrieving an `XmlHelper` for Elements
 
-If you'd rather retrieve an `XMLHelper` instance for the element you're
+If you'd rather retrieve an `XmlHelper` instance for the element you're
 searching for, you can get one directly by using the `helper()` method:
 
 ```php
@@ -271,9 +271,9 @@ $bookHelper = $xml->helper( ''//book' );
 
 ```
 
-### Retrieving *multiple* `XMLHelper` Instances for Elements
+### Retrieving *multiple* `XmlHelper` Instances for Elements
 
-It is also possible to retrieve a _collection_ of `XMLHelper` instances for
+It is also possible to retrieve a _collection_ of `XmlHelper` instances for
 a corresponding collection of `DOMNode`...
 
 ```php
@@ -283,7 +283,7 @@ $bookHelpers = $xml->helpers( 'catalogue/books/book' );
 
 ### Retrieving Element Values
 
-This is where the useful stuff is in this library. If you have an `XMLHelper`
+This is where the useful stuff is in this library. If you have an `XmlHelper`
 instance wrapped around one of the `<book />` elements listed above, you can
 use some helper methods to retrieve the node values.
 
