@@ -12,6 +12,6 @@
 		}
 	},
 	"require": {
-		"illuminate/support": "dev-master"
+		"illuminate/support": "5.*"
 	}
 }
