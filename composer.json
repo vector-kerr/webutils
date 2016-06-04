@@ -8,7 +8,7 @@
     ],
 	"autoload": {
 		"psr-4": {
-			"Vector88\\WebUtils": "src"
+			"Vector88\\WebUtils\\": "src"
 		}
 	},
 	"require": {
