@@ -1,8 +1,11 @@
 {
 	"name": "vector88/webutils",
 	"autoload": {
-		"psr-0": {
+		"psr-4": {
 			"Vector88\\WebUtils": "src"
 		}
+	},
+	"require": {
+		"illuminate/support": "dev-master"
 	}
 }
