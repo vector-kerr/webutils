@@ -1,6 +1,6 @@
 <?php
 
-namespace Vector88\WebUtils;
+namespace Vector88\WebUtils\Providers;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
