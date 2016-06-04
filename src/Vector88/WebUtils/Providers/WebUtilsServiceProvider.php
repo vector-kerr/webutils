@@ -15,12 +15,12 @@ class WebUtilsServiceProvider extends ServiceProvider
     public function register()
     {
 		
-		App::bind( 'XmlHelper', function() {
-			return new \Vector88\WebUtils\XmlHelper();
+		$this->app->bind( 'XmlHelper', function() {
+			return new Vector88\WebUtils\XmlHelper();
 		} );
 		
-		App::bind( 'HttpRequestHelper', function() {
-			return new \Vector88\WebUtils\HttpRequestHelper();
+		$this->app->bind( 'HttpRequestHelper', function() {
+			return new Vector88\WebUtils\HttpRequestHelper();
 		} );
 		
     }
