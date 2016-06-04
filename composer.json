@@ -1,0 +1,8 @@
+{
+	"name": "vector88/webutils",
+	"autoload": {
+		"psr-0": {
+			"Vector88\\WebUtils": "src"
+		}
+	}
+}
