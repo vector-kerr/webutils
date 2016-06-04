@@ -311,9 +311,9 @@ class XmlHelper {
 		return $helper;
 	}
 	
-	public function setAttribute( $attributeName, $attributeValue, $parent ) {
+	public function setAttribute( $attributeName, $attributeValue, $parent = null ) {
 		if( null === $parent ) {
-			$parent = $this->_rootElement->documentElement;
+			$parent = $this->_rootElement;
 		}
 		$parent->setAttribute( $attributeName, $attributeValue );
 	}
