@@ -1,5 +1,11 @@
 {
 	"name": "vector88/webutils",
+    "authors": [
+        {
+            "name": "Daniel 'Vector' Kerr",
+            "email": "vector.kerr@gmail.com"
+        }
+    ],
 	"autoload": {
 		"psr-4": {
 			"Vector88\\WebUtils": "src"
