@@ -9,6 +9,9 @@ The package currently contains helpers for:
 * XML generation and parsing
 * HTTP request generation and response parsing
 
+This package is set up for integration with Composer and Laravel, but you
+can just as easily download and use the heavy-lifting classes independently.
+
 
 ## Installation
 
@@ -21,8 +24,7 @@ The package currently contains helpers for:
     }
 ]
 ```
-
-2. Execute `composer require vecetor88/webutils` to include webutils in your
+2. Execute `composer require vector88/webutils` to include webutils in your
 composer project.
 
 
@@ -59,7 +61,7 @@ direct inclusion.
 require __DIR__ . "/vendor/autoload.php";
 
 use Vector88\WebUtils\XmlHelper;
-use Vector88\WebUtils\HTTPHelper;
+use Vector88\WebUtils\HttpRequestHelper;
 ```
 
 ## Usage
@@ -132,8 +134,27 @@ At the node level, there are a number of methods available to make reading
 and writing nodes trivial. On the reading level, there are also methods to
 work with collections of nodes.
 
-Heads up: most stuff simply returns NULL if it can't get a value.
+Heads up: most stuff simply returns `NULL` if it can't get a value.
 
+
+### Using the XML Helper
+
+If you are using the XML Helper with Laravel, you can take advantage of the IOC mechanisms.
+
+```php
+<?php
+$xml = XmlHelper::loadStream( $xmlString );
+...
+```
+
+If you are using the XML Helper outside of Laravel, you can just create a new instance and work with the methods from there.
+
+```php
+<?php
+$xml = new XmlHelper();
+$xml->loadStream( $xmlString );
+...
+```
 
 ### Loading an XML String
 
@@ -271,9 +292,9 @@ $bookHelper = $xml->helper( ''//book' );
 
 ```
 
-### Retrieving *multiple* `XmlHelper` Instances for Elements
+### Retrieving multiple `XmlHelper` Instances for Elements
 
-It is also possible to retrieve a _collection_ of `XmlHelper` instances for
+It is also possible to retrieve an array of `XmlHelper` instances for
 a corresponding collection of `DOMNode`...
 
 ```php
@@ -289,7 +310,7 @@ use some helper methods to retrieve the node values.
 
 ```php
 <?php
-// Retrieve a helper for the book with the given ISBN
+// Retrieve a helper for the first book element that can be found
 $book = $xml->helper( '/book' );
 
 // Retrieve and display the book title and year
@@ -311,8 +332,22 @@ retrieve a floating point value, and `dateTime()` which will retrieve (you
 guessed it) a DateTime element. the call to `dateTime()` requires a second
 argument, which is the date format string. This format string is the same as
 what would be used in `DateTime::createFromFormat()`, so
-[look it up(http://php.net/manual/en/datetime.createfromformat.php) if you're
+[look it up](http://php.net/manual/en/datetime.createfromformat.php) if you're
 not sure what to put in there.
+
+
+### Retrieving Multiple Element Values
+
+There are also array versions of the above functions which allows you to get
+an array of values of the given type from all nodes that match the given XPath.
+
+```php
+<?php
+$allBookTitles = $xml->strings( '/book/title' );
+$allBookYears = $xml->integers( '/book/year' );
+```
+
+Same goes for `floats()` and `dateTimes()`.
 
 
 ### Retrieving Attribute Values
@@ -363,8 +398,31 @@ or a helper for one of those things, so you can get back to the root element
 somehow.
 
 
+### Namespace Integration
 
+The XML Helper is able to work with elements in namespaces. Simply declare a
+namespace, and then use your namespace prefix to work with the elements in
+that namespace.
 
+```php
+<?php
+$xml = XmlHelper::loadStream( $xmlString );
+$xml->withNamespace( "http://example.com/animals", "ns" );
+$animals = $xml->findAll( "ns:animals/ns:animal" );
+```
+
+When using an XML Helper to generate an XML Helper for a child or children,
+namespaces are cloned and passed on at the time of generation, so you don't
+need to redeclare namespaces for subsequent calls.
+
+```php
+<?php
+$animalHelpers = $xml->helpers( "ns:animals/ns:animal" );
+foreach( $animalHelpers as $animalHelper ) {
+  echo $animalHelper->string( "ns:species" ) . "<br />";
+  echo $animalHelper->string( "ns:subspecies" ) . "<br />";
+}
+```
 
 ### Great, but I can do all of this stuff using DOMDocument and DOMXPath...
 
