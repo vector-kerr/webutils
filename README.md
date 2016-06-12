@@ -15,16 +15,7 @@ can just as easily download and use the heavy-lifting classes independently.
 
 ## Installation
 
-1. Add this repository to your composer.json file:
-```JSON
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/vector-kerr/webutils"
-    }
-]
-```
-2. Execute `composer require vector88/webutils` to include webutils in your
+1. Execute `composer require vector88/webutils` to include webutils in your
 composer project.
 
 
