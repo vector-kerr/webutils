@@ -1,17 +1,19 @@
 {
 	"name": "vector88/webutils",
-    "authors": [
-        {
-            "name": "Daniel 'Vector' Kerr",
-            "email": "vector.kerr@gmail.com"
-        }
-    ],
+	"description": "PHP tools to make working with things like HTTP requests and XML quick and easy.",
+	"authors": [
+		{
+			"name": "Daniel 'Vector' Kerr",
+			"email": "vector.kerr@gmail.com"
+		}
+	],
 	"autoload": {
 		"psr-4": {
 			"Vector88\\": "src/Vector88/"
 		}
 	},
 	"require": {
+		"php": "^5.3.3 || ^7.0",
 		"illuminate/support": "5.*"
 	}
 }
