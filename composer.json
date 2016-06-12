@@ -1,6 +1,7 @@
 {
 	"name": "vector88/webutils",
 	"description": "PHP tools to make working with things like HTTP requests and XML quick and easy.",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Daniel 'Vector' Kerr",
